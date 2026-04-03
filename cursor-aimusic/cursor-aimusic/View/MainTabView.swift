@@ -21,7 +21,7 @@ struct MainTabView: View {
                     case .explore:
                         ExploreHomeView()
                     case .create:
-                        PlaceholderTabView(title: "Create")
+                        CreateView()
                     case .library:
                         PlaceholderTabView(title: "Library")
                     }

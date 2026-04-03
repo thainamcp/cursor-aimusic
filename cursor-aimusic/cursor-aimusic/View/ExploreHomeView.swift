@@ -24,6 +24,8 @@ struct ExploreHomeView: View {
         .init(title: "Electric Waves", subtitle: "House • Dance Floor", imageURLString: "http://localhost:3845/assets/536097fadf8a5ec29df0b05f662835c791f5c91b.png")
     ]
 
+    @State private var selectedTrack: PlayerTrack?
+
     var body: some View {
         VStack(spacing: 0) {
             header
@@ -36,7 +38,17 @@ struct ExploreHomeView: View {
 
                     LazyVGrid(columns: [GridItem(.fixed(180)), GridItem(.fixed(180))], spacing: 10) {
                         ForEach(cards, id: \.id) { card in
-                            GenreCardView(card: card, textPrimary: textPrimary, textSecondary: textSecondary)
+                            GenreCardView(
+                                card: card,
+                                textPrimary: textPrimary,
+                                textSecondary: textSecondary
+                            ) {
+                                selectedTrack = PlayerTrack(
+                                    title: card.title,
+                                    subtitle: card.subtitle,
+                                    imageURLString: card.imageURLString
+                                )
+                            }
                         }
                     }
                     .frame(width: 370)
@@ -44,6 +56,9 @@ struct ExploreHomeView: View {
                 }
                 .padding(16)
             }
+        }
+        .sheet(item: $selectedTrack) { track in
+            PlayerView(track: track)
         }
     }
 }
@@ -111,43 +126,47 @@ private struct GenreCardView: View {
     let card: GenreCard
     let textPrimary: Color
     let textSecondary: Color
+    let onTap: () -> Void
 
     var body: some View {
-        ZStack(alignment: .topLeading) {
-            AsyncImage(url: URL(string: card.imageURLString)) { phase in
-                switch phase {
-                case .empty:
-                    Color.black
-                case .success(let image):
-                    image.resizable().scaledToFill()
-                case .failure:
-                    Color.black
-                @unknown default:
-                    Color.black
+        Button(action: onTap) {
+            ZStack(alignment: .topLeading) {
+                AsyncImage(url: URL(string: card.imageURLString)) { phase in
+                    switch phase {
+                    case .empty:
+                        Color.black
+                    case .success(let image):
+                        image.resizable().scaledToFill()
+                    case .failure:
+                        Color.black
+                    @unknown default:
+                        Color.black
+                    }
                 }
-            }
-            .frame(width: 180, height: 180)
-
-            Rectangle()
-                .fill(Color.black.opacity(0.2))
                 .frame(width: 180, height: 180)
 
-            VStack(alignment: .leading, spacing: 4) {
-                Text(card.title)
-                    .font(.system(size: 14, weight: .bold))
-                    .foregroundStyle(textPrimary)
-                    .frame(width: 145, alignment: .leading)
-                    .lineLimit(1)
+                Rectangle()
+                    .fill(Color.black.opacity(0.2))
+                    .frame(width: 180, height: 180)
 
-                Text(card.subtitle)
-                    .font(.system(size: 13, weight: .regular))
-                    .foregroundStyle(textSecondary)
-                    .frame(width: 145, alignment: .leading)
-                    .lineLimit(1)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(card.title)
+                        .font(.system(size: 14, weight: .bold))
+                        .foregroundStyle(textPrimary)
+                        .frame(width: 145, alignment: .leading)
+                        .lineLimit(1)
+
+                    Text(card.subtitle)
+                        .font(.system(size: 13, weight: .regular))
+                        .foregroundStyle(textSecondary)
+                        .frame(width: 145, alignment: .leading)
+                        .lineLimit(1)
+                }
+                .padding(.leading, 12)
+                .padding(.top, 118)
             }
-            .padding(.leading, 12)
-            .padding(.top, 118)
         }
+        .buttonStyle(.plain)
         .frame(width: 180, height: 180)
         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
     }
