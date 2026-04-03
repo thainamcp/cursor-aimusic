@@ -50,13 +50,7 @@ struct ExploreHomeView: View {
 
 private extension ExploreHomeView {
     var header: some View {
-        VStack(spacing: 0) {
-            StatusBarRow(timeText: "9:41",
-                          textPrimary: textPrimary)
-                .padding(.top, 11)
-                .padding(.horizontal, 16)
-
-            HStack {
+        HStack {
                 Text("Explore")
                     .font(.system(size: 32, weight: .bold))
                     .foregroundStyle(textPrimary)
@@ -81,49 +75,7 @@ private extension ExploreHomeView {
             }
             .frame(height: 50)
             .padding(.horizontal, 16)
-            .padding(.top, 0)
-        }
-        .frame(maxWidth: .infinity)
-    }
-}
-
-private struct StatusBarRow: View {
-    let timeText: String
-    let textPrimary: Color
-
-    var body: some View {
-        HStack(spacing: 6) {
-            Text(timeText)
-                .font(.system(size: 17, weight: .semibold))
-                .foregroundStyle(textPrimary)
-                .monospacedDigit()
-
-            RoundedRectangle(cornerRadius: 100)
-                .fill(Color.black)
-                .frame(width: 125, height: 37)
-
-            Spacer(minLength: 0)
-
-            HStack(spacing: 7) {
-                Image(systemName: "antenna.radiowaves.left.and.right")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 19.2, height: 12.2)
-                    .foregroundStyle(textPrimary)
-
-                Image(systemName: "wifi")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 17.1, height: 12.3)
-                    .foregroundStyle(textPrimary)
-
-                Image(systemName: "battery.100")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 27.3, height: 13)
-                    .foregroundStyle(textPrimary)
-            }
-        }
+            .padding(.top, 16)
     }
 }
 
