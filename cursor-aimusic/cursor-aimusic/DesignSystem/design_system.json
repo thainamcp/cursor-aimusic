@@ -6,13 +6,17 @@
   },
   "colors": {
     "uiMain": "#CDF95F",
+    "uiBackgroundPrimary": "#0E0B1E",
     "textPrimary": "#FBFAFF",
+    "textSecondary": "#A3A0C0",
     "text3": "#000000",
     "wireframeButton": "#3C3C43",
-    "uiMainTint10": "rgba(205,249,95,0.1)"
+    "uiMainTint10": "rgba(205,249,95,0.1)",
+    "tabBarBorder": "rgba(77,68,126,0.4)"
   },
   "radius": {
     "corner40": 40,
+    "corner45": 45,
     "homeIndicatorPill": 100,
     "dynamicIslandPill": 100
   },
@@ -44,13 +48,19 @@
   },
   "sizing": {
     "backgroundCorner": 40,
+    "tabBarHeight": 84,
+    "tabBarItemWidth": 134,
     "statusBarTimeWidth": 200,
     "dynamicIslandWidth": 125,
     "dynamicIslandHeight": 37,
     "brandNameWidth": 93,
     "brandNameHeight": 30,
     "homeIndicatorWidth": 134,
-    "homeIndicatorHeight": 5
+    "homeIndicatorHeight": 5,
+    "genreCardWidth": 180,
+    "genreCardHeight": 180,
+    "genreCardCorner": 10,
+    "genreGridWidth": 370
   }
 }
 

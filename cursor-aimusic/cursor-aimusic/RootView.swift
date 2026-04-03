@@ -9,7 +9,7 @@ struct RootView: View {
                 SplashScreenView()
                     .transition(.opacity)
             } else {
-                ContentView()
+                MainTabView()
                     .transition(.opacity)
             }
         }
