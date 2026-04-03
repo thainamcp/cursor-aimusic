@@ -1,0 +1,56 @@
+{
+  "designSystem": "cursor-aimusic",
+  "layoutReference": {
+    "width": 402,
+    "height": 874
+  },
+  "colors": {
+    "uiMain": "#CDF95F",
+    "textPrimary": "#FBFAFF",
+    "text3": "#000000",
+    "wireframeButton": "#3C3C43",
+    "uiMainTint10": "rgba(205,249,95,0.1)"
+  },
+  "radius": {
+    "corner40": 40,
+    "homeIndicatorPill": 100,
+    "dynamicIslandPill": 100
+  },
+  "spacing": {
+    "logoVerticalGroupGap": 0,
+    "companyStackGap": 15,
+    "bottomContainerGap": 10,
+    "statusBarPaddingHorizontal": 16,
+    "statusBarPaddingTop": 11,
+    "logoCenterYOffset": 37.76,
+    "statusBarTimeRowHeight": 22
+  },
+  "typography": {
+    "sonaTitle": {
+      "font": "SF Pro Semibold",
+      "size": 36,
+      "weight": 600
+    },
+    "fromLabel": {
+      "font": "SF Pro Regular",
+      "size": 14,
+      "weight": 400
+    },
+    "statusTime": {
+      "font": "SF Pro Semibold",
+      "size": 17,
+      "weight": 600
+    }
+  },
+  "sizing": {
+    "backgroundCorner": 40,
+    "statusBarTimeWidth": 200,
+    "dynamicIslandWidth": 125,
+    "dynamicIslandHeight": 37,
+    "brandNameWidth": 93,
+    "brandNameHeight": 30,
+    "homeIndicatorWidth": 134,
+    "homeIndicatorHeight": 5
+  }
+}
+

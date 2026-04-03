@@ -11,7 +11,7 @@ import SwiftUI
 struct cursor_aimusicApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
         }
     }
 }
