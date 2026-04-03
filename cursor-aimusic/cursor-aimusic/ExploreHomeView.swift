@@ -35,7 +35,7 @@ struct ExploreHomeView: View {
                         .foregroundStyle(textPrimary)
 
                     LazyVGrid(columns: [GridItem(.fixed(180)), GridItem(.fixed(180))], spacing: 10) {
-                        ForEach(cards, id: \\.id) { card in
+                        ForEach(cards, id: \.id) { card in
                             GenreCardView(card: card, textPrimary: textPrimary, textSecondary: textSecondary)
                         }
                     }
@@ -66,7 +66,7 @@ private extension ExploreHomeView {
                 HStack(spacing: 10) {
                     GreenPuckButton(countText: "135",
                                      accent: accent,
-                                     textPrimary: Color(red: 14.0 / 255.0, green: 11.0 / 255.0, blue: 30.0 / 255.0))
+                                    textOnAccent: Color(red: 14.0 / 255.0, green: 11.0 / 255.0, blue: 30.0 / 255.0))
 
                     Button {
                         // TODO: connect action.
