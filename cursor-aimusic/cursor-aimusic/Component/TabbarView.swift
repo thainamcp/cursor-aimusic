@@ -26,14 +26,6 @@ struct TabbarView: View {
             }
             .padding(.top, 8)
             .frame(height: 51)
-
-            ZStack {
-                RoundedRectangle(cornerRadius: 100)
-                    .fill(Color.white)
-                    .frame(width: 134, height: 5)
-                    .padding(.bottom, 8)
-            }
-            .frame(height: 33)
         }
         .contentShape(Rectangle())
     }

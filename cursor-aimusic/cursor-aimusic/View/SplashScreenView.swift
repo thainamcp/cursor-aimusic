@@ -48,13 +48,6 @@ struct SplashScreenView: View {
 
                 // Status bar + bottom content.
                 VStack(spacing: 0) {
-                    StatusBarView(
-                        timeText: "9:41",
-                        scaleX: metrics.x,
-                        scaleY: metrics.y,
-                        textColor: textPrimary,
-                        dynamicIslandColor: .black
-                    )
                     Spacer(minLength: 0)
                     BottomCompanyView(
                         brandImageURL: URL(string: imgBrandName),
@@ -143,7 +136,7 @@ private struct BottomCompanyView: View {
                 Text("From")
                     .font(.system(size: scaleY(14), weight: .regular))
                     .foregroundStyle(textColor)
-
+                
                 ZStack {
                     if let url = brandImageURL {
                         AsyncImage(url: url) { phase in
@@ -163,12 +156,8 @@ private struct BottomCompanyView: View {
                     }
                 }
                 .frame(width: scaleX(93), height: scaleY(30))
+                .padding(.bottom, 16)
             }
-
-            RoundedRectangle(cornerRadius: scaleX(100))
-                .fill(Color.white)
-                .frame(width: scaleX(134), height: scaleY(5))
-                .padding(.bottom, scaleY(8))
         }
         .frame(maxWidth: .infinity)
     }
