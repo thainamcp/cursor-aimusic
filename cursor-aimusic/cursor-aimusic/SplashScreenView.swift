@@ -10,16 +10,7 @@ struct SplashScreenView: View {
 
     var body: some View {
         GeometryReader { proxy in
-            let refWidth: CGFloat = 402
-            let refHeight: CGFloat = 874
-            let scaleX = proxy.size.width / refWidth
-            let scaleY = proxy.size.height / refHeight
-            let scale = min(scaleX, scaleY)
-
-            func x(_ v: CGFloat) -> CGFloat { v * scaleX }
-            func y(_ v: CGFloat) -> CGFloat { v * scaleY }
-
-            let cornerRadius = 40.0 * scale
+            let metrics = SplashScreenMetrics(size: proxy.size)
 
             ZStack {
                 // Background image.
@@ -47,38 +38,53 @@ struct SplashScreenView: View {
                 // Logo (equivalent to `Logo_Vertical`).
                 VStack(spacing: 0) {
                     SonaBarsView(color: uiMain)
-                        .frame(width: x(79.054), height: y(95.523))
+                        .frame(width: metrics.x(79.054), height: metrics.y(95.523))
                     Text("SONA")
-                        .font(.system(size: y(36), weight: .semibold))
+                        .font(.system(size: metrics.y(36), weight: .semibold))
                         .foregroundStyle(textPrimary)
                         .lineLimit(1)
                 }
-                .offset(y: y(37.76))
+                .offset(y: metrics.y(37.76))
 
                 // Status bar + bottom content.
                 VStack(spacing: 0) {
                     StatusBarView(
                         timeText: "9:41",
-                        scaleX: x,
-                        scaleY: y,
+                        scaleX: metrics.x,
+                        scaleY: metrics.y,
                         textColor: textPrimary,
                         dynamicIslandColor: .black
                     )
                     Spacer(minLength: 0)
                     BottomCompanyView(
                         brandImageURL: URL(string: imgBrandName),
-                        scaleX: x,
-                        scaleY: y,
+                        scaleX: metrics.x,
+                        scaleY: metrics.y,
                         textColor: textPrimary,
-                        fromToBrandGap: y(15),
-                        bottomContainerGap: y(10)
+                        fromToBrandGap: metrics.y(15),
+                        bottomContainerGap: metrics.y(10)
                     )
                 }
             }
-            .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
+            .clipShape(RoundedRectangle(cornerRadius: metrics.cornerRadius, style: .continuous))
         }
         .ignoresSafeArea()
     }
+}
+
+private struct SplashScreenMetrics {
+    let refWidth: CGFloat = 402
+    let refHeight: CGFloat = 874
+    let size: CGSize
+
+    var scaleXValue: CGFloat { size.width / refWidth }
+    var scaleYValue: CGFloat { size.height / refHeight }
+    var scale: CGFloat { min(scaleXValue, scaleYValue) }
+
+    var cornerRadius: CGFloat { 40.0 * scale }
+
+    func x(_ v: CGFloat) -> CGFloat { v * scaleXValue }
+    func y(_ v: CGFloat) -> CGFloat { v * scaleYValue }
 }
 
 private struct StatusBarView: View {
@@ -225,4 +231,3 @@ private struct Bar: View {
 #Preview {
     SplashScreenView()
 }
-
